@@ -1,0 +1,7 @@
+The widespread use of the internet has given rise to media and with it the use of social media platforms for everyday use. 
+Using social media has kept people updated faster nowadays than TV channels and newspapers can keep up with. 
+This is because of how fast data can change and with it the news. This also then gives rise to rumors and fake news.
+
+The purpose of this project is to create an NLP model that can classify fake news as true or false. 
+The use of python libraries to perform tokenization and extraction  of text data as well as 
+selection methods will be able to show the best fit features of the model to obtain its highest precision.
