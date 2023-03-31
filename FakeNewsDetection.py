@@ -23,9 +23,7 @@ data = data.sample(frac=1)
 data.reset_index(inplace=True)
 data.drop(["index"], axis=1, inplace=True)
 
-sns.countplot(data=data,
-			x='class',
-			order=data['class'].value_counts().index)
+sns.countplot(data=data, x='class', order=data['class'].value_counts().index)
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -45,26 +43,16 @@ preprocessed_review = preprocess_text(data['text'].values)
 data['text'] = preprocessed_review
 
 # Real
-consolidated = ' '.join(
-	word for word in data['text'][data['class'] == 1].astype(str))
-wordCloud = WordCloud(width=1600,
-					height=800,
-					random_state=21,
-					max_font_size=110,
-					collocations=False)
+consolidated = ' '.join(word for word in data['text'][data['class'] == 1].astype(str))
+wordCloud = WordCloud(width=1600, height=800, random_state=21, max_font_size=110, collocations=False)
 plt.figure(figsize=(15, 10))
 plt.imshow(wordCloud.generate(consolidated), interpolation='bilinear')
 plt.axis('off')
 plt.show()
 
 # Fake
-consolidated = ' '.join(
-	word for word in data['text'][data['class'] == 0].astype(str))
-wordCloud = WordCloud(width=1600,
-					height=800,
-					random_state=21,
-					max_font_size=110,
-					collocations=False)
+consolidated = ' '.join(word for word in data['text'][data['class'] == 0].astype(str))
+wordCloud = WordCloud(width=1600, height=800, random_state=21, max_font_size=110, collocations=False)
 plt.figure(figsize=(15, 10))
 plt.imshow(wordCloud.generate(consolidated), interpolation='bilinear')
 plt.axis('off')
@@ -74,10 +62,8 @@ def get_top_n_words(corpus, n=None):
 	vec = CountVectorizer().fit(corpus)
 	bag_of_words = vec.transform(corpus)
 	sum_words = bag_of_words.sum(axis=0)
-	words_freq = [(word, sum_words[0, idx])
-				for word, idx in vec.vocabulary_.items()]
-	words_freq = sorted(words_freq, key=lambda x: x[1],
-						reverse=True)
+	words_freq = [(word, sum_words[0, idx]) for word, idx in vec.vocabulary_.items()]
+	words_freq = sorted(words_freq, key=lambda x: x[1], reverse=True)
 	return words_freq[:n]
 
 common_words = get_top_n_words(data['text'], 20)
@@ -91,10 +77,7 @@ df1.groupby('Review').sum()['count'].sort_values(ascending=False).plot(
 	title="Bar Chart of Top Words Frequency"
 )
 
-x_train, x_test, y_train, y_test = train_test_split(data['text'],
-													data['class'],
-													test_size=0.25)
-
+x_train, x_test, y_train, y_test = train_test_split(data['text'], data['class'], test_size=0.25)
 vectorization = TfidfVectorizer()
 x_train = vectorization.fit_transform(x_train)
 x_test = vectorization.transform(x_test)
@@ -110,8 +93,7 @@ print(accuracy_score(y_test, model.predict(x_test)))
 from sklearn import metrics
 cm = metrics.confusion_matrix(y_test, model.predict(x_test))
 
-cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix=cm,
-											display_labels=[False, True])
+cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=[False, True])
 
 cm_display.plot()
 plt.show()
