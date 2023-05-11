@@ -1,9 +1,0 @@
-The product model will test the unseen data, the results will be plotted, and accordingly, 
-the product will be a model that detects and classifies fake articles and can be used and integrated with any system for future use. 
-
-
-Our experiments demonstrate that a machine learning model using NLP techniques can effectively detect fake news articles. 
-The results suggest that incorporating word embeddings can improve the performance of the model, 
-and sentiment analysis may not be a crucial feature for fake news detection. 
-
-Future research can explore other feature extraction techniques and evaluate the model's performance on a larger and more diverse dataset.
